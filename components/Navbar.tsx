@@ -25,7 +25,6 @@ export default function Navbar() {
           href="/"
           className="flex items-center gap-2 text-lg font-bold text-indigo-400 dark:text-indigo-400"
         >
-          <span className="text-2xl">💻</span>
           <span>2INF Festival</span>
         </Link>
 
