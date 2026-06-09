@@ -26,6 +26,10 @@ const markers = [
     label: "Kantine / Fellesareal",
   },
   { pos: [60.7941, 11.067] as [number, number], label: "Parkering" },
+  {
+    pos: [60.7945, 11.0685] as [number, number],
+    label: "Lab 1 & Lab 2 / Klasserom (Teknologibygget)",
+  },
 ];
 
 export default function Map() {
