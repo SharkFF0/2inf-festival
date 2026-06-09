@@ -14,6 +14,8 @@ export const metadata: Metadata = {
     "Karriere- og teknologifestival arrangert av VG2 Informasjonsteknologi ved Hamar katedralskole. 18. mars 2027.",
 };
 
+const isProd = process.env.NODE_ENV === "production";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="no" className={geist.variable} suppressHydrationWarning>
@@ -24,14 +26,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: `(function(){var t=localStorage.getItem('theme');var dark=t==='dark'||(t===null&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.classList.toggle('dark',dark)})()`,
           }}
         />
+        {/* Cookiebot — only in production; localhost is not an authorised domain */}
+        {isProd && (
+          <Script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid="1dfe7d22-0726-444d-a06a-b6ea61dd7991"
+            data-blockingmode="auto"
+            strategy="beforeInteractive"
+          />
+        )}
       </head>
-      <Script
-        id="Cookiebot"
-        src="https://consent.cookiebot.com/uc.js"
-        data-cbid="1dfe7d22-0726-444d-a06a-b6ea61dd7991"
-        data-blockingmode="auto"
-        strategy="beforeInteractive"
-      />
       <body className="flex min-h-screen flex-col bg-slate-50 text-slate-900 transition-colors duration-200 dark:bg-slate-950 dark:text-slate-100">
         <ThemeProvider>
           <Navbar />
