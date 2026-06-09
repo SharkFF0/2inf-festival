@@ -4,30 +4,30 @@ import { festival, bedrifter, foredrag, workshops } from "@/data/festival";
 export default function Home() {
   return (
     <div>
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-linear-to-br from-slate-900 via-indigo-950 to-slate-900 px-4 py-24 text-center dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)]" />
+      {/* Hero — light: soft indigo tint / dark: deep slate-indigo */}
+      <section className="relative overflow-hidden bg-linear-to-br from-indigo-50 via-white to-slate-100 px-4 py-24 text-center dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.08)_0%,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.15)_0%,transparent_70%)]" />
         <div className="relative mx-auto max-w-3xl">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-4 py-1.5 text-sm font-medium text-indigo-300 ring-1 ring-indigo-500/20">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-indigo-400" />
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-indigo-500/10 px-4 py-1.5 text-sm font-medium text-indigo-600 ring-1 ring-indigo-500/20 dark:text-indigo-300">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-indigo-500 dark:bg-indigo-400" />
             18. mars 2027 &bull; Hamar katedralskole
           </div>
-          <h1 className="mb-4 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+          <h1 className="mb-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl dark:text-white">
             {festival.navn}
           </h1>
-          <p className="mb-8 text-lg text-slate-300 sm:text-xl">
+          <p className="mb-8 text-lg text-slate-600 sm:text-xl dark:text-slate-300">
             {festival.beskrivelse}
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
               href="/program"
-              className="rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white shadow-lg shadow-indigo-900/50 transition-colors hover:bg-indigo-500"
+              className="rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white shadow-lg shadow-indigo-500/30 transition-colors hover:bg-indigo-500"
             >
               Se programmet
             </Link>
             <Link
               href="/bedrifter"
-              className="rounded-lg border border-slate-600 px-6 py-3 font-semibold text-slate-200 transition-colors hover:bg-slate-800"
+              className="rounded-lg border border-slate-300 px-6 py-3 font-semibold text-slate-700 transition-colors hover:bg-slate-100 dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800"
             >
               Møt bedriftene
             </Link>
@@ -36,8 +36,8 @@ export default function Home() {
       </section>
 
       {/* Stats */}
-      <section className="border-b border-slate-800 bg-slate-900 dark:border-slate-800 dark:bg-slate-900">
-        <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-slate-800 md:grid-cols-4">
+      <section className="border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-slate-200 md:grid-cols-4 dark:divide-slate-800">
           {[
             { num: bedrifter.length, label: "Bedrifter" },
             { num: foredrag.length, label: "Foredrag" },
@@ -45,8 +45,8 @@ export default function Home() {
             { num: "09–15", label: "Åpningstider" },
           ].map((s) => (
             <div key={s.label} className="flex flex-col items-center py-8 text-center">
-              <span className="text-3xl font-bold text-indigo-400">{s.num}</span>
-              <span className="mt-1 text-sm text-slate-400">{s.label}</span>
+              <span className="text-3xl font-bold text-indigo-600 dark:text-indigo-400">{s.num}</span>
+              <span className="mt-1 text-sm text-slate-500 dark:text-slate-400">{s.label}</span>
             </div>
           ))}
         </div>
@@ -54,7 +54,7 @@ export default function Home() {
 
       {/* Quick-nav cards */}
       <section className="mx-auto max-w-6xl px-4 py-16">
-        <h2 className="mb-8 text-2xl font-bold text-slate-100 dark:text-slate-100">
+        <h2 className="mb-8 text-2xl font-bold text-slate-900 dark:text-slate-100">
           Utforsk festivalen
         </h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -68,36 +68,36 @@ export default function Home() {
             <Link
               key={c.href}
               href={c.href}
-              className="group flex flex-col gap-3 rounded-xl border border-slate-700 bg-slate-800/50 p-5 transition-all hover:border-indigo-500/50 hover:bg-slate-800 dark:border-slate-700 dark:bg-slate-800/50"
+              className="group flex flex-col gap-3 rounded-xl border border-slate-200 bg-white p-5 transition-all hover:border-indigo-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800/50 dark:hover:border-indigo-500/50 dark:hover:bg-slate-800"
             >
               <span className="text-3xl">{c.icon}</span>
-              <h3 className="font-semibold text-slate-100 group-hover:text-indigo-300 transition-colors">
+              <h3 className="font-semibold text-slate-900 transition-colors group-hover:text-indigo-600 dark:text-slate-100 dark:group-hover:text-indigo-300">
                 {c.title}
               </h3>
-              <p className="text-sm text-slate-400">{c.desc}</p>
+              <p className="text-sm text-slate-500 dark:text-slate-400">{c.desc}</p>
             </Link>
           ))}
         </div>
       </section>
 
       {/* Info boxes */}
-      <section className="bg-slate-900/50 px-4 py-16 dark:bg-slate-900/50">
+      <section className="bg-slate-50 px-4 py-16 dark:bg-slate-900/50">
         <div className="mx-auto max-w-6xl grid gap-6 md:grid-cols-3">
-          <div className="rounded-xl border border-slate-700 bg-slate-800 p-6">
-            <h3 className="mb-3 text-lg font-semibold text-slate-100">📅 Dato og tid</h3>
-            <p className="text-slate-300">18. mars 2027</p>
-            <p className="text-slate-400">{festival.startTid} – {festival.sluttTid}</p>
+          <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+            <h3 className="mb-3 text-lg font-semibold text-slate-900 dark:text-slate-100">📅 Dato og tid</h3>
+            <p className="text-slate-700 dark:text-slate-300">18. mars 2027</p>
+            <p className="text-slate-500 dark:text-slate-400">{festival.startTid} – {festival.sluttTid}</p>
           </div>
-          <div className="rounded-xl border border-slate-700 bg-slate-800 p-6">
-            <h3 className="mb-3 text-lg font-semibold text-slate-100">📍 Sted</h3>
-            <p className="text-slate-300">{festival.sted}</p>
-            <p className="text-slate-400">{festival.bygning}</p>
+          <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+            <h3 className="mb-3 text-lg font-semibold text-slate-900 dark:text-slate-100">📍 Sted</h3>
+            <p className="text-slate-700 dark:text-slate-300">{festival.sted}</p>
+            <p className="text-slate-500 dark:text-slate-400">{festival.bygning}</p>
           </div>
-          <div className="rounded-xl border border-slate-700 bg-slate-800 p-6">
-            <h3 className="mb-3 text-lg font-semibold text-slate-100">✉️ Kontakt</h3>
+          <div className="rounded-xl border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-800">
+            <h3 className="mb-3 text-lg font-semibold text-slate-900 dark:text-slate-100">✉️ Kontakt</h3>
             <a
               href={`mailto:${festival.kontaktEpost}`}
-              className="text-indigo-400 hover:text-indigo-300 transition-colors break-all"
+              className="text-indigo-600 transition-colors hover:text-indigo-500 break-all dark:text-indigo-400 dark:hover:text-indigo-300"
             >
               {festival.kontaktEpost}
             </a>
