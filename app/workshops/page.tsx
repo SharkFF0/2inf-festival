@@ -33,7 +33,7 @@ export default function Workshops() {
           return (
             <article
               key={w.id}
-              className={`flex flex-col gap-3 rounded-xl border border-slate-200 border-l-4 ${acc.border} bg-white p-5 transition-all duration-200 hover:scale-[1.02] hover:border-slate-300 hover:shadow-lg dark:border-slate-700 dark:bg-slate-800/60 dark:hover:border-slate-600 dark:hover:bg-slate-800 dark:hover:shadow-black/30`}
+              className={`flex flex-col gap-3 rounded-xl border border-slate-200 border-l-4 ${acc.border} bg-white p-5 transition-all duration-200 hover:scale-[1.02] hover:border-slate-300 hover:shadow-lg dark:border-t-slate-700 dark:border-r-slate-700 dark:border-b-slate-700 dark:bg-slate-800/60 dark:hover:border-t-slate-600 dark:hover:border-r-slate-600 dark:hover:border-b-slate-600 dark:hover:bg-slate-800 dark:hover:shadow-black/30`}
             >
               {/* Tid + plasser */}
               <div className="flex items-center justify-between">
