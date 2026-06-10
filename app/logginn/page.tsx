@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "@/components/AuthProvider";
 
-export default function Logginn() {
+function LogginnInner() {
   const { refresh } = useAuth();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -201,5 +201,13 @@ export default function Logginn() {
         </form>
       )}
     </div>
+  );
+}
+
+export default function Logginn() {
+  return (
+    <Suspense>
+      <LogginnInner />
+    </Suspense>
   );
 }
