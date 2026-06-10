@@ -1,4 +1,6 @@
 import { foredrag, bedrifter } from "@/data/festival";
+import ProgramKort from "@/components/ProgramKort";
+import ProgramBunn from "@/components/ProgramBunn";
 
 const kategoriFarger: Record<string, string> = {
   Utvikling: "bg-blue-500/20 text-blue-700 ring-1 ring-blue-500/30 dark:text-blue-300",
@@ -43,6 +45,14 @@ export default function Program() {
         <p className="mt-2 text-slate-500 dark:text-slate-400">
           {foredrag.length} foredrag &mdash; 18. mars 2027, 09:00–15:00
         </p>
+        <div className="mt-3 inline-flex items-center gap-2 rounded-lg bg-indigo-50 px-4 py-2.5 dark:bg-indigo-950/40">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 shrink-0 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <p className="text-sm font-medium text-indigo-700 dark:text-indigo-300">
+            Velg tre foredrag du vil delta på &mdash; klikk på et kort for å velge. Kun ett per tidsluke.
+          </p>
+        </div>
       </div>
 
       <div className="flex flex-col divide-y divide-slate-200 dark:divide-slate-700/50">
@@ -63,7 +73,7 @@ export default function Program() {
               <div className="mt-1 w-px flex-1 bg-slate-300 dark:bg-slate-700/50" />
             </div>
 
-            {/* Cards: wrap horizontally, stack when out of space */}
+            {/* Cards */}
             <div className="flex flex-1 flex-wrap gap-2">
               {items.map((f) => {
                 const bedrift = getBedrift(f.holderBedriftId);
@@ -71,29 +81,14 @@ export default function Program() {
                 const aFarge = auditoriumFarger[f.rom] ?? "";
 
                 return (
-                  <article
+                  <ProgramKort
                     key={f.id}
-                    className="flex w-full flex-col gap-1.5 rounded-lg border border-slate-200 bg-white p-3 transition-all duration-200 hover:scale-[1.01] hover:border-indigo-300 hover:shadow-md dark:border-slate-700 dark:bg-slate-800/60 dark:hover:border-indigo-500/40 dark:hover:bg-slate-800 dark:hover:shadow-indigo-950/40 sm:w-[calc(50%-0.25rem)] lg:w-[calc(33.333%-0.375rem)]"
-                  >
-                    <div className="flex flex-wrap items-start justify-between gap-1.5">
-                      <h3 className="text-sm font-semibold leading-snug text-slate-900 dark:text-slate-100">{f.tittel}</h3>
-                      <div className="flex flex-wrap gap-1">
-                        <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${aFarge}`}>
-                          {f.rom}
-                        </span>
-                        <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${kFarge}`}>
-                          {f.kategori}
-                        </span>
-                      </div>
-                    </div>
-                    {bedrift && (
-                      <p className="text-xs text-slate-500 dark:text-slate-400">
-                        <span className="font-medium text-slate-700 dark:text-slate-300">{bedrift.navn}</span>
-                        <span className="text-slate-400 dark:text-slate-600"> &mdash; {bedrift.standnummer}</span>
-                      </p>
-                    )}
-                    <p className="text-xs text-slate-400 dark:text-slate-600">Maks {f.maksPlasser} plasser</p>
-                  </article>
+                    foredrag={f}
+                    bedriftNavn={bedrift?.navn}
+                    bedriftStand={bedrift?.standnummer}
+                    kategoriFarge={kFarge}
+                    auditoriumFarge={aFarge}
+                  />
                 );
               })}
             </div>
@@ -101,6 +96,8 @@ export default function Program() {
           </div>
         ))}
       </div>
+
+      <ProgramBunn />
     </div>
   );
 }

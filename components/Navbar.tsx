@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTheme } from "./ThemeProvider";
+import { usePamelding } from "./PameldingProvider";
 
 const links = [
   { href: "/", label: "Hjem" },
@@ -17,6 +18,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
+  const { valgte } = usePamelding();
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur transition-colors duration-200 dark:border-slate-700 dark:bg-slate-900/95">
@@ -43,6 +45,21 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
+          <Link
+            href="/min-pamelding"
+            className={`relative rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
+              pathname === "/min-pamelding"
+                ? "bg-indigo-600 text-white"
+                : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"
+            }`}
+          >
+            Min plan
+            {valgte.length > 0 && (
+              <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-indigo-600 text-[10px] font-bold text-white">
+                {valgte.length}
+              </span>
+            )}
+          </Link>
         </nav>
 
         <div className="flex items-center gap-2">
@@ -143,6 +160,22 @@ export default function Navbar() {
               {l.label}
             </Link>
           ))}
+          <Link
+            href="/min-pamelding"
+            onClick={() => setOpen(false)}
+            className={`flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+              pathname === "/min-pamelding"
+                ? "bg-indigo-600 text-white"
+                : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-700 dark:hover:text-white"
+            }`}
+          >
+            Min plan
+            {valgte.length > 0 && (
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-indigo-600 text-[10px] font-bold text-white">
+                {valgte.length}
+              </span>
+            )}
+          </Link>
         </nav>
       )}
     </header>
