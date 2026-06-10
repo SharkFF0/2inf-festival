@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' https://consent.cookiebot.com",
+              `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === "development" ? " 'unsafe-eval'" : ""} https://consent.cookiebot.com`,
               "style-src 'self' 'unsafe-inline' https://unpkg.com",
               "img-src 'self' data: https://*.tile.openstreetmap.org https://unpkg.com https://consent.cookiebot.com",
               "connect-src 'self' https://*.tile.openstreetmap.org https://consent.cookiebot.com https://consentcdn.cookiebot.com",
