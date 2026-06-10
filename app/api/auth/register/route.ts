@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
     sameSite: "lax",
     path: "/",
     maxAge: 60 * 60 * 24 * 7,
+    secure: process.env.NODE_ENV === "production",
   });
 
   return Response.json({ ok: true, navn: nyBruker.navn, skole: nyBruker.skole }, { status: 201 });
